@@ -146,6 +146,15 @@ class UserController extends Controller
 
         $user = User::find($request->id);
 
+        if($request->password != null)
+        {
+            $request->validate([
+            'password' => 'confirmed|min:6|different:current_password'
+            ]);
+
+            $user->password = bcrypt($request->password);
+        }
+
 
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;

@@ -70,6 +70,7 @@
                       <input id="password_confirmation" type="password" class="form-control" name="password_confirmation">
                     </div>
                   </div>
+                  
                   <div class="row">
                     
                     <div class="form-group col-6">

@@ -8,7 +8,7 @@
           <div class="col-md-12">
             <div class="card card-primary">
               <div class="card-header text-center">
-                Update
+                User Update
               </div>
               <div class="card-body">
                 <form method="POST" action="{{ route('user.UpdateProcess') }}" enctype="multipart/form-data">
@@ -52,14 +52,12 @@
                         @error('phone')
                           <div class="text-danger">* {{ $message }}</div>
                         @enderror
-                      </div>
-                  
-                      
+                      </div>                     
                     </div>
 
-                  {{--<div class="row">
+                  <div class="row">
                     <div class="form-group col-6">
-                      <label for="password" class="d-block">Password<span class="text-danger">*</span></label>
+                      <label for="password" class="d-block">Password</label>
                       <input id="password" type="password" class="form-control pwstrength" data-indicator="pwindicator"
                         name="password">
                         @error('password')
@@ -67,10 +65,10 @@
                       @enderror
                     </div>
                     <div class="form-group col-6">
-                      <label for="password_confirmation" class="d-block">Confirm Password<span class="text-danger">*</span></label>
+                      <label for="password_confirmation" class="d-block">Confirm Password</label>
                       <input id="password_confirmation" type="password" class="form-control" name="password_confirmation">
                     </div>
-                  </div>--}}
+                  </div>
 
                   <div class="row">
                     

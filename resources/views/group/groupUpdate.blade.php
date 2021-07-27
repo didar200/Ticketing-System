@@ -8,7 +8,7 @@
           <div class="col-md-6">
             <div class="card card-primary">
               <div class="card-header text-center">
-                Update Group
+                Group Update
               </div>
               <div class="card-body">
                 <form method="POST" action="{{ route('group.updateProcess') }}">

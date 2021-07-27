@@ -173,6 +173,7 @@
                       data-feather="settings" class="side-color"></i><span class="side-color">Settings</span></a>
                   <ul class="dropdown-menu">
                     <li><a href="{{ route('smtpConfigure') }}"><span style="color: #FFF;">SMTP Configure</span></a></li>
+                    <li><a href="{{ route('smtpConfigure') }}"><span style="color: #FFF;">Notifications</span></a></li>
                   </ul>
                 </li>
               @endif
