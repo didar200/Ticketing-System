@@ -1,0 +1,101 @@
+Dear Jaman vhai,
+
+This is a budgetary price from Trend Micro for their email security solution for 3 years for 101 concurrent users (101 mails per second mark)
+
+> Begin forwarded message:
+> 
+> From: "atiqur_rahman@trendmicro.com" <atiqur_rahman@trendmicro.com>
+> Subject: Email Security Price
+> Date: January 21, 2021 at 11:04:11 PM GMT+6
+> To: "Md. Tawfiqul Bari" <tawfiqul.bari@pacecloud.com>
+> Cc: "tawfiqul.bari@royalgreen.net" <tawfiqul.bari@royalgreen.net>, "kanchan_m@trendmicro.com" <kanchan_m@trendmicro.com>
+> 
+> Dear Tawfiq Bhai,
+>  
+> Please find the below price. The datasheet as attachment.
+>  
+> Customer name
+> Commercial
+> Reseller name
+> Royal Green
+> Customer Type
+> Commercial
+> License Type
+> New
+> Quoted Date
+> Thursday, 21 January 2021
+> Validated Date
+> Thursday, 11 February 2021
+>  
+>  
+>  
+>  
+>  
+>  
+>  
+> Month
+> #SKU
+> Product Description
+> Type
+> QTY
+> Unit price
+> Total price
+>  
+> 12
+> IMZZM01500B12
+> InterScan Messaging Security Suite Standard
+> New
+> 101
+> $                  11.50
+>  $                             1,161.50
+> 12
+> IMZZM01500D12
+> InterScan Messaging Security Suite Standard
+> Renew
+> 101
+> $                   4.00
+>  $                                404.00
+> 12
+> IMZZM01500D12
+> InterScan Messaging Security Suite Standard
+> Renew
+> 101
+> $                   4.00
+>  $                                404.00
+> Grand Total(in USD)
+> $                             1,969.50
+> Terms and Conditions:
+> These prices are FOB, excluded all Taxes and VAT
+>  
+>  
+> The price doesn’t include the installation cost
+>  
+>  
+> 24*7 Phone + Email Support added with this price. This support will be from Trend Micro
+>  
+>  
+> Price will be valid till on given date
+>  
+>  
+> The PO to be released to the authorized Reseller / distributor of TM
+>  
+>  
+>  
+>  
+> Please feel free to contact us should you need any further assistance. Thank you.
+> Atiqur Rahman | Regional Account Manager-Bangladesh, Nepal and Bhutan
+> 6 Temasek Boulevard, #16-01 to 05, Suntec Tower 4, Singapore 038986
+> Mobile: +8801741619222 | Email: atiqur_rahman@trendmicro.com <mailto:atiqur_rahman@trendmicro.com>
+> Follows us on: 
+> www.trendmicro.com <http://www.trendmicro.com/> |  <https://www.facebook.com/TrendMicroBDNPBT/?ref=bookmarks>   <http://twitter.com/trendmicro>   <http://www.linkedin.com/company/trend-micro>   <http://www.youtube.com/user/TrendMicroInc>   <http://newsroom.trendmicro.com/index.php?s=95>
+>  
+> 
+>  
+>  
+>  
+>  
+> TREND MICRO EMAIL NOTICE
+> 
+> The information contained in this email and any attachments is confidential and may be subject to copyright or other intellectual property protection. If you are not the intended recipient, you are not authorized to use or disclose this information, and we request that you notify us by reply mail or telephone and delete the original message from your mail system.
+> 
+> For details about what personal information we collect and why, please see our Privacy Notice on our website at: Read privacy policy <http://www.trendmicro.com/privacy>
