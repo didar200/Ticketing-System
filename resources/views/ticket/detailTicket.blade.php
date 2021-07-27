@@ -39,7 +39,7 @@
             </div>
 
             <div class="row">
-              <div class="col-6" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 10px;">
+              <div class="col-md-6 col-sm-12" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 10px;">
                
                   <table class="table table-bordered table-sm table-light">
                     <tr>
@@ -116,7 +116,7 @@
 
               </div> 
 
-              <div class="col-6" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 10px;">
+              <div class="col-md-6 col-sm-12" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 10px;">
                 <form method="POST" action="{{ route('ticketUpdate') }}">
                   @csrf 
 
@@ -235,7 +235,7 @@
             </div>
 
             <div class="row">
-              <div class="form-group col-6" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 10px;">
+              <div class="form-group col-md-6 col-sm-12" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 10px;">
                 <div>
                   <b>Notes: </b>
                 </div>
@@ -269,7 +269,7 @@
 
               </div>
 
-              <div class="form-group col-6" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 10px;">
+              <div class="form-group col-md-6 col-sm-12" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 10px;">
                 <div>
                   <b>History: </b>
                 </div>

@@ -20,7 +20,7 @@
                     
                     <div class="row">
 
-                      <div class="form-group col-6">
+                      <div class="form-group col-md-6 col-sm-12">
                         <label for="customer_id">Customer ID<span class="text-danger">*</span></label>
                         <input id="customer_id" type="text" class="form-control" name="customer_id">
                         @error('customer_id')
@@ -28,7 +28,7 @@
                           @enderror
                       </div>
 
-                      <div class="form-group col-6">
+                      <div class="form-group col-md-6 col-sm-12">
                         <label for="name">Name<span class="text-danger">*</span></label>
                         <input id="name" type="text" class="form-control" name="name">
                         @error('name')
@@ -40,7 +40,7 @@
                     </div>
 
                     <div class="row">
-                      <div class="form-group col-6">
+                      <div class="form-group col-md-6 col-sm-12">
                         <label for="email">Email<span class="text-danger">*</span></label>
                         <input id="email" type="email" class="form-control" name="email">
                         @error('email')
@@ -48,7 +48,7 @@
                         @enderror
                       </div>
 
-                      <div class="form-group col-6">
+                      <div class="form-group col-md-6 col-sm-12">
                         <label for="phone">Phone<span class="text-danger">*</span></label>
                         <input id="phone" type="text" class="form-control" name="phone">
                         @error('phone')
@@ -62,17 +62,15 @@
                 
                     <div class="row">
                       
-                      <div class="form-group col-6">
-                        <div class="form-group">
+                      <div class="form-group col-md-6 col-sm-12">
                           <label for="address">Address</label>
                           <textarea class="form-control" name="address" rows="8"></textarea>
-                        </div>
                         @error('address')
                           <div class="text-danger">* {{ $message }}</div>
                         @enderror
                       </div>
 
-                      <div class="form-group col-6">
+                      <div class="form-group col-md-6 col-sm-12">
                         <label>Status<span class="text-danger">*</span></label>
                         <select class="custom-select" name="status">
                           <option value="1">Active</option>
@@ -84,7 +82,7 @@
 
                     <div class="row">
 
-                      <div class="form-group col-6">
+                      <div class="form-group col-md-6 col-sm-12">
                         <label>POP<span class="text-danger">*</span></label>
                         <select class="custom-select" name="pop">
                           @foreach($pops as $pop)

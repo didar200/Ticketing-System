@@ -22,27 +22,17 @@
         <div class="col-12">
 
           <div class="card">
-            <div class="navbar-bg"></div>
-              <nav class="navbar navbar-expand-lg main-navbar">
-                <div class="form-inline mr-auto">
-                  <ul class="navbar-nav mr-3">
-              
-                    <li class="form-inline mr-auto ml-2">
-                      <div class="search-element">
-                        <input class="form-control" type="search" name="search" placeholder="Ticket No." aria-label="Search" data-width="200" id="search" onkeyup="ticketList()" data-url="{{ URL::to('searchTicketAjax') }}">
-                      </div> 
-                    </li>
-                    <li class="form-inline mr-auto ml-3">
-                      <div class="search-element">
-                        <input class="form-control" type="search" name="searchCustomer" placeholder="Customer ID." aria-label="Search" data-width="200" id="searchCustomer" onkeyup="customerTicketList()" data-url="{{ URL::to('searchCustomerTicketAjax') }}">
-                      </div> 
-                    </li>
-                  </ul>
-                </div>
-              </nav>
-
-              
+        
+            <div class="card-header col-md-6 col-sm-12">
+              <div class="col-6">
+                <input class="form-control" type="search" name="search" placeholder="Ticket No." aria-label="Search" data-width="180" id="search" onkeyup="ticketList()" data-url="{{ URL::to('searchTicketAjax') }}">
+              </div> 
             
+              <div class="col-6">
+                <input class="form-control" type="search" name="searchCustomer" placeholder="Customer ID." aria-label="Search" data-width="180" id="searchCustomer" onkeyup="customerTicketList()" data-url="{{ URL::to('searchCustomerTicketAjax') }}">
+              </div> 
+            </div>
+
             <h4 class="mt-3 ml-4">Search Result:</h4>
             <div class="card-body">
               <div class="table-responsive">

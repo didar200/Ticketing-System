@@ -8,7 +8,7 @@
           <div class="col-md-12">
             <div class="card card-primary">
               <div class="card-header text-center">
-                <h4>Email Send To All Active Customers</h4>
+                <h4>Email To Customers</h4>
               </div>
               <div class="card-body">
                 <form method="POST" action="{{ route('customerEmail') }}" enctype="multipart/form-data">
@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="row">
-                      <div class="fallback form-group col-5">
+                      <div class="fallback form-group col-md-5 col-sm-12">
                         <label for="attachment">Attachment:</label>
                         <input name="attachment" type="file" class="form-control" id="attachment" />
                         (<b>jpg, png, gif, txt and pdf</b> files are allowed) Max: 5MB
@@ -54,7 +54,7 @@
                         
                       </div>
 
-                      <div class="form-group col-4">
+                      <div class="form-group col-md-4 col-sm-12">
                         <div for="status">Select Customer Category: <span class="text-danger">*</span></div>
                         <div class="pretty p-switch">
                           <input type="radio" name="status" value="2" />
@@ -79,7 +79,7 @@
 
                       </div>
 
-                      <div class="form-group col-3">
+                      <div class="form-group col-md-3 col-sm-12">
                         <label>POP:<span class="text-danger">*</span></label>
                         <select class="custom-select" name="pop">
                           <option value="0">All</option>

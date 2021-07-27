@@ -19,7 +19,7 @@
                     @endif
                     
                     <div class="row">
-                      <div class="form-group col-6">
+                      <div class="form-group col-md-6 col-sm-12">
                         <label><b>Select Customer:</b><span class="text-danger">*</span></label>
                         <select class="custom-select" name="customer_id">
                           @foreach($customers as $customer)
@@ -29,7 +29,7 @@
                         </select>
                       </div>
 
-                      <div class="form-group col-6">
+                      <div class="form-group col-md-6 col-sm-12">
                         <label><b>Status:</b><span class="text-danger">*</span></label>
                         <select class="custom-select" id="" name="status">
                           <option value="Open">Open</option>
@@ -42,7 +42,7 @@
 
                     <div class="row">
 
-                      <div class="form-group col-6">
+                      <div class="form-group col-md-6 col-sm-12">
                         <label><b>Select Group:</b><span class="text-danger">*</span></label>
                         <select class="custom-select" id="group-users" name="group_id">
                           <option value="">Select...</option>
@@ -55,7 +55,7 @@
                         @enderror
                       </div>
 
-                      <div class="form-group col-6">
+                      <div class="form-group col-md-6 col-sm-12">
                         <label><b>Assign to:</b><span class="text-danger">*</span></label>
                         <select class="custom-select" id="users-group" name="user_id">
                           
@@ -91,7 +91,7 @@
                     </div>
 
                     <div class="row">
-                      <div class="fallback form-group col-6">
+                      <div class="fallback form-group col-md-6 col-sm-12">
                         <label for="attachment"><b>Attachment:</b></label>
                         <input name="attachment[]" type="file" multiple class="form-control" id="attachment" />
                         (<b>jpg, png, gif, txt and pdf</b> files are allowed) Max: 2MB
@@ -105,11 +105,6 @@
                             </ul>
                           </div>
                         @endif
-                      </div>
-
-                      <div class="fallback form-group col-6">
-                        <input type="checkbox" id="email" name="email">
-                        <label for="email" style="font-size: 16px;">  Email</label>  
                       </div>
 
                     </div>  

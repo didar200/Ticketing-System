@@ -19,7 +19,7 @@
                     @endif
                     
                     <div class="row">
-                      <div class="form-group col-6">
+                      <div class="form-group col-md-6 col-sm-12">
                         <label for="host">SMTP Server<span class="text-danger">*</span></label>
                         <input id="host" type="text" class="form-control" name="host" value="{{ $smtp->host }}">
                         @error('host')
@@ -27,7 +27,7 @@
                         @enderror
                       </div>
                   
-                      <div class="form-group col-6">
+                      <div class="form-group col-md-6 col-sm-12">
                         <label for="port">Port<span class="text-danger">*</span></label>
                         <input id="port" type="text" class="form-control" name="port" value="{{ $smtp->port }}">
                         @error('port')
@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="row">
-                      <div class="form-group col-6">
+                      <div class="form-group col-md-6 col-sm-12">
                         <label for="username">Username<span class="text-danger">*</span></label>
                         <input id="username" type="text" class="form-control" name="username" value="{{ $smtp->username }}">
                         @error('username')
@@ -45,7 +45,7 @@
                         @enderror
                       </div>
 
-                      <div class="form-group col-6">
+                      <div class="form-group col-md-6 col-sm-12">
                         <label for="password">Password<span class="text-danger">*</span></label>
                         <input id="password" type="text" class="form-control" name="password" value="{{ $smtp->password }}">
                         @error('password')
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="row">
-                      <div class="form-group col-6">
+                      <div class="form-group col-md-6 col-sm-12">
                         <label for="address">From Address<span class="text-danger">*</span></label>
                         <input id="address" type="text" class="form-control" name="address" value="{{ $smtp->address }}">
                         @error('address')
@@ -65,7 +65,7 @@
                         @enderror
                       </div>
                   
-                      <div class="form-group col-6">
+                      <div class="form-group col-md-6 col-sm-12">
                         <label for="name">From Name<span class="text-danger">*</span></label>
                         <input id="name" type="text" class="form-control" name="name" value="{{ $smtp->name }}">
                         @error('name')
@@ -76,7 +76,7 @@
 
                     <div class="row">
 
-                      <div class="form-group col-6">
+                      <div class="form-group col-md-6 col-sm-12">
                         <div for="status">Encryption<span class="text-danger">*</span></div>
                         <div class="pretty p-switch">
                           <input type="radio" name="encryption" @if($smtp->encryption == null) checked @endif value="" />

@@ -28,10 +28,8 @@
                       </div>
 
                       <div class="form-group col-12">
-                        <div class="form-group">
                           <label for="address">Address<span class="text-danger">*</span></label>
                           <textarea class="form-control" name="address" rows="8"></textarea>
-                        </div>
                         @error('address')
                           <div class="text-danger">* {{ $message }}</div>
                         @enderror
