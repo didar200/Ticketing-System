@@ -164,7 +164,15 @@
                   <a href="#" class="menu-toggle nav-link has-dropdown"><i
                       data-feather="mail" class="side-color"></i><span class="side-color">Email</span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="{{ route('customerEmail') }}"><span style="color: #FFF;">Customer Notification</span></a></li>
+                    <li><a href="{{ route('customerEmail') }}"><span style="color: #FFF;">Email To Customer</span></a></li>
+                  </ul>
+                </li>
+
+                <li class="dropdown">
+                  <a href="#" class="menu-toggle nav-link has-dropdown"><i
+                      data-feather="settings" class="side-color"></i><span class="side-color">Settings</span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{{ route('smtpConfigure') }}"><span style="color: #FFF;">SMTP Configure</span></a></li>
                   </ul>
                 </li>
               @endif

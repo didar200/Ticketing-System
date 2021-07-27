@@ -7,6 +7,7 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\PopController;
+use App\Http\Controllers\SmtpConfigurationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,7 +77,10 @@ Route::middleware('AuthCheck')->group(function(){
 		Route::put('/customerUpdate', [CustomerController::class, 'customerUpdateProcess'])->name('customer.updateProcess');
 
 		Route::get('/customerEmail', [CustomerController::class, 'customerEmail'])->name('customerEmail');	
-		Route::post('/customerEmail', [CustomerController::class, 'customerEmailProcess']);	
+		Route::post('/customerEmail', [CustomerController::class, 'customerEmailProcess']);
+
+		Route::get('/smtpConfigure', [SmtpConfigurationController::class, 'smtpConfigure'])->name('smtpConfigure');	
+		Route::POST('/smtpConfigure', [SmtpConfigurationController::class, 'smtpConfigureProcess']);
 
 	});
 	
