@@ -17,10 +17,12 @@ class TicketEmailNotification extends Notification
      * @return void
      */
     public $ticket_id;
+    public $group_name;
 
-    public function __construct($ticket_id)
+    public function __construct($ticket_id, $group_name)
     {
         $this->ticket_id = $ticket_id;
+        $this->group_name = $group_name;
     }
 
     /**
@@ -43,8 +45,8 @@ class TicketEmailNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('New Ticket Created TT#'.$this->ticket_id)
-                    ->line('New Ticket has been created. Which TT#'.$this->ticket_id);
+                    ->subject('A ticket assign to ' .$this->group_name. 'TT# '.$this->ticket_id)
+                    ->line('A ticket assign to ' .$this->group_name. 'TT# '.$this->ticket_id);
     }
 
     /**

@@ -8,7 +8,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\PopController;
 use App\Http\Controllers\SmtpConfigurationController;
-use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\UserNotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,8 +83,8 @@ Route::middleware('AuthCheck')->group(function(){
 		Route::get('/smtpConfigure', [SmtpConfigurationController::class, 'smtpConfigure'])->name('smtpConfigure');	
 		Route::POST('/smtpConfigure', [SmtpConfigurationController::class, 'smtpConfigureProcess']);
 
-		Route::get('/emailNotification', [NotificationController::class, 'emailNotification'])->name('emailNotification');	
-		Route::POST('/emailNotification', [NotificationController::class, 'emailNotificationProcess']);
+		Route::get('/emailNotification', [UserNotificationController::class, 'emailNotification'])->name('emailNotification');	
+		Route::POST('/emailNotification', [UserNotificationController::class, 'emailNotificationProcess']);
 
 	});
 	

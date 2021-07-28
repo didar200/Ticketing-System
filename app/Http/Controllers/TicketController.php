@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Ticket;
 use App\Models\Note;
 use App\Models\History;
+use App\Models\UserNotification;
 
 use App\Notifications\TicketEmailNotification;
 use Illuminate\Support\Facades\Notification;
@@ -75,14 +76,22 @@ class TicketController extends Controller
 
         $group = Group::with('users')->find($request->group_id);
 
-        if($request->email != null)
+        $notify = UserNotification::find(1);
+        
+        if($notify !=null)
         {
-            $ticket_id = $ticket->id;
-            foreach($group->users as $user)
+            if($notify->notification_status == 1)
             {
-                Notification::route('mail' , $user->email)->notify(new TicketEmailNotification($ticket_id));
+                $ticket_id = $ticket->id;
+                $group_name = $group->group_name;
+
+                foreach($group->users as $user)
+                {
+                    Notification::route('mail' , $user->email)->notify(new TicketEmailNotification($ticket_id, $group_name));
+                }
             }
         }
+        
         
         return redirect()->route('myTicket.list');
     }
@@ -272,6 +281,24 @@ class TicketController extends Controller
         $history->ticket_id = $request->id;
 
         $history->save();
+
+        $group = Group::with('users')->find($request->group_id);
+
+        $notify = UserNotification::find(1);
+        
+        if($notify !=null)
+        {
+            if($notify->notification_status == 1)
+            {
+                $ticket_id = $request->id;
+                $group_name = $group->group_name;
+
+                foreach($group->users as $user)
+                {
+                    Notification::route('mail' , $user->email)->notify(new TicketEmailNotification($ticket_id, $group_name));
+                }
+            }
+        }
 
         return redirect()->route('myTicket.list');
     }

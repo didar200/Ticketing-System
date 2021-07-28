@@ -11,7 +11,7 @@
 width: 100% !important;
 }
 
-/*.footer {
+.footer {
 width: 100% !important;
 }
 }
@@ -20,7 +20,7 @@ width: 100% !important;
 .button {
 width: 100% !important;
 }
-}*/
+}
 </style>
 </head>
 <body>
@@ -29,7 +29,7 @@ width: 100% !important;
 <tr>
 <td align="center">
 <table class="content" width="100%" cellpadding="0" cellspacing="0" role="presentation">
-
+{{ $header ?? '' }}
 
 <!-- Email Body -->
 <tr>
@@ -47,7 +47,7 @@ width: 100% !important;
 </td>
 </tr>
 
-
+{{ $footer ?? '' }}
 </table>
 </td>
 </tr>
