@@ -1,80 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Reset Password | Ticketing System</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo.png') }}"/>
 
+        <!-- App css -->
+        <link href="{{ asset('/login/css/bootstrap-material.min.css') }}" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
+        <link href="{{ asset('/login/css/app-material.min.css') }}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
 
-<!-- auth-forgot-password.html  21 Nov 2019 04:05:02 GMT -->
-<head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Ticketing System</title>
-  <!-- General CSS Files -->
-  <link rel="stylesheet" href="{{ asset('assets/css/app.min.css') }}">
-  <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
-  <!-- Custom style CSS -->
-  <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
-  <link rel='shortcut icon' type='image/x-icon' href="{{ asset('assets/img/logo.png') }}" />
-</head>
+        <link href="{{ asset('/login/css/bootstrap-material-dark.min.css') }}" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" />
+        <link href="{{ asset('/login/css/app-material-dark.min.css') }}" rel="stylesheet" type="text/css" id="app-dark-stylesheet" />
 
-<body>
-  <div class="loader"></div>
-  <div id="app">
-    <section class="section">
-      <div class="container" style="margin-top: 150px; ">
-        <div class="row">
-          <div class="col-md-6 offset-md-3">
-            <div class="card card-primary">
-              <div class="card-header">
-                <h4>Reset Password</h4>
-              </div>
-              <div class="card-body">
-                
-                <form method="POST" action="{{ route('resetPasswordProcess') }}">
-                  @csrf
+        <!-- icons -->
+        <link href="{{ asset('/login/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 
-                  @if(Session::has('pass_change'))
-                    <div class="alert alert-success">{{ Session::get('pass_change') }}</div>
-                  @endif
+    </head>
 
-                  <input type="hidden" name="id" value="{{ $user->id }}">
+    <body class="loading authentication-bg authentication-bg-pattern">
 
-                  <div class="form-group col-12">
-                      <label for="new_password" class="d-block">New Password<span class="text-danger">*</span></label>
-                      <input id="new_password" type="password" class="form-control pwstrength" data-indicator="pwindicator"
-                        name="new_password">
-                        @error('new_password')
-                        <div class="text-danger">* {{ $message }}</div>
-                      @enderror
-                    </div>
-                    <div class="form-group col-12">
-                      <label for="password_confirmation" class="d-block">Confirm Password<span class="text-danger">*</span></label>
-                      <input id="password_confirmation" type="password" class="form-control" name="new_password_confirmation">
-                    </div>
+        <div class="account-pages mt-5 mb-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6 col-xl-5">
+                        <div class="card bg-pattern">
 
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                      Change Password
-                    </button>
-                  </div>
-                </form>
-              </div>
+                            <div class="card-body p-4">
+                                
+                                <div class="text-center w-75 m-auto">
+                                    <div class="auth-logo">
+                                        <span class="logo-lg logo logo-dark text-center text-muted">
+                                            <img src="{{ asset('assets/img/logo.png') }}" alt="" height="30"> Ticketing System
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <p class="text-muted mb-4 mt-3">Enter new password and confirm new password to reset password.</p>
+
+                                @if(Session::has('login_error'))
+                                  <div class="alert alert-danger">{{ Session::get('login_error') }}</div>
+                                @endif
+
+                                <form method="POST" action="{{ route('resetPasswordProcess') }}">
+
+                                    @csrf
+
+                                    @if(Session::has('pass_change'))
+                                      <div class="alert alert-success">{{ Session::get('pass_change') }}</div>
+                                    @endif
+
+                                    <input type="hidden" name="id" value="{{ $user->id }}">
+
+                                    <div class="form-group mb-3">
+                                        <label for="password">New Password</label>
+                                        <div class="input-group input-group-merge">
+                                            <input type="password" id="password" name="new_password" class="form-control" placeholder="Enter your password">
+                                        </div>
+                                        @error('new_password')
+                                            <div class="text-danger">* {{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label for="password_confirmation">Confirm New Password</label>
+                                        <div class="input-group input-group-merge">
+                                            <input type="password" id="password_confirmation" name="new_password_confirmation" class="form-control" placeholder="Enter your confirm password">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-0 text-center">
+                                        <button class="btn btn-primary btn-block" type="submit"> Change Password </button>
+                                    </div>
+
+                                </form>
+
+                            </div> <!-- end card-body -->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="row mt-3">
+                            <div class="col-12 text-center">
+                                <p class="text-white-50">Back to <a href="{{ route('login') }}" class="text-white ml-1"><b>Log in</b></a></p>
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                    </div> <!-- end col -->
+                </div>
+                <!-- end row -->
             </div>
-          </div>
+            <!-- end container -->
         </div>
-      </div>
-    </section>
-  </div>
-  <!-- General JS Scripts -->
-  <script src="{{ asset('assets/js/app.min.js') }}"></script>
-  <!-- JS Libraies -->
-  <!-- Page Specific JS File -->
-  <!-- Template JS File -->
-  <script src="{{ asset('assets/js/scripts.js') }}"></script>
-  <!-- Custom JS File -->
-  <script src="{{ asset('assets/js/custom.js') }}"></script>
-</body>
+        <!-- end page -->
 
 
-<!-- auth-forgot-password.html  21 Nov 2019 04:05:02 GMT -->
+        <footer class="footer footer-alt">
+            2020 - <script>document.write(new Date().getFullYear())</script> &copy; PaceNet Ticketing System. 
+        </footer>
+
+        <!-- Vendor js -->
+        <script src="{{ asset('/login/js/vendor.min.js') }}"></script>
+
+        <!-- App js -->
+        <script src="{{ asset('/login/js/app.min.js') }}"></script>
+        
+    </body>
 </html>

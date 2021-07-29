@@ -52,7 +52,7 @@ class LoginController extends Controller
 
     	if($user == null)
     	{
-    		return back()->with('email_error', 'User does not exists');	
+    		return back()->with('email_error', 'The email id is not valid!');	
     	}
 
     	$token = Str::random(32);
@@ -83,7 +83,7 @@ class LoginController extends Controller
     public function resetPasswordProcess(Request $request)
     {
     	$request->validate([
-            'new_password' => 'confirmed|min:6'
+            'new_password' => 'required|min:6|confirmed'
         ]);
 
         $user = User::find($request->id);

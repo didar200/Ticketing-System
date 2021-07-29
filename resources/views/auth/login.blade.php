@@ -1,89 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Log In | Ticketing System</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo.png') }}"/>
 
+        <!-- App css -->
+        <link href="{{ asset('/login/css/bootstrap-material.min.css') }}" rel="stylesheet" type="text/css" id="bs-default-stylesheet" />
+        <link href="{{ asset('/login/css/app-material.min.css') }}" rel="stylesheet" type="text/css" id="app-default-stylesheet" />
 
-<!-- auth-login.html  21 Nov 2019 03:49:32 GMT -->
-<head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Login || Ticketing System</title>
-  <!-- General CSS Files -->
-  <link rel="stylesheet" href="{{ asset('assets/css/app.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/bundles/bootstrap-social/bootstrap-social.css') }}">
-  <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
-  <!-- Custom style CSS -->
-  <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
-  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/img/logo.png') }}"/>
-</head>
+        <link href="{{ asset('/login/css/bootstrap-material-dark.min.css') }}" rel="stylesheet" type="text/css" id="bs-dark-stylesheet" />
+        <link href="{{ asset('/login/css/app-material-dark.min.css') }}" rel="stylesheet" type="text/css" id="app-dark-stylesheet" />
 
-<body>
-  <div class="loader"></div>
-  <div id="app">
-    <section class="section">
-      <div class="container" style="margin-top: 150px;">
-        <div class="row">
-          <div class="col-md-6 offset-md-3">
-            <div class="card card-primary">
-              <div class="card-header text-center">
-                <h4>Login</h4>
-              </div>
-              <div class="card-body">
+        <!-- icons -->
+        <link href="{{ asset('/login/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
 
-                @if(Session::has('login_error'))
-                  <div class="alert alert-danger">{{ Session::get('login_error') }}</div>
-                @endif
-                <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
+    </head>
 
-                  @csrf
+    <body class="loading authentication-bg authentication-bg-pattern">
 
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus value="{{ old('email') }}">
-                    {{--<div class="invalid-feedback">
-                      Please fill in your email
-                    </div>--}}
-                  </div>
-                  <div class="form-group">
-                    <div class="d-block">
-                      <label for="password" class="control-label">Password</label>
-                      <div class="float-right">
-                        <a href="{{ route('forgotPassword') }}" class="text-small">
-                          Forgot Password?
-                        </a>
-                      </div>
-                    </div>
-                    <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
-                    
-                  </div>
-                  
-                  <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                      Login
-                    </button>
-                  </div>
-                </form>
-                
+        <div class="account-pages mt-5 mb-5">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-md-8 col-lg-6 col-xl-5">
+                        <div class="card bg-pattern">
+
+                            <div class="card-body p-4">
+                                
+                                <div class="text-center w-75 m-auto">
+                                    <div class="auth-logo">
+                                        <span class="logo-lg logo logo-dark text-center text-muted">
+                                            <img src="{{ asset('assets/img/logo.png') }}" alt="" height="30"> Ticketing System
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <p class="text-muted mb-4 mt-3">Enter your email address and password to access.</p>
+
+                                @if(Session::has('login_error'))
+                                  <div class="alert alert-danger">{{ Session::get('login_error') }}</div>
+                                @endif
+
+                                <form method="POST" action="{{ route('login') }}">
+
+                                    @csrf
+
+                                    <div class="form-group mb-3">
+                                        <label for="emailaddress">Email address</label>
+                                        <input class="form-control" type="email" id="emailaddress" name="email" required="" placeholder="Enter your email" value="{{ old('email') }}">
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label for="password">Password</label>
+                                        <div class="input-group input-group-merge">
+                                            <input type="password" id="password" name="password" class="form-control" placeholder="Enter your password">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mb-0 text-center">
+                                        <button class="btn btn-primary btn-block" type="submit"> Log In </button>
+                                    </div>
+
+                                </form>
+
+                            </div> <!-- end card-body -->
+                        </div>
+                        <!-- end card -->
+
+                        <div class="row mt-3">
+                            <div class="col-12 text-center">
+                                <p> <a href="{{ route('forgotPassword') }}" class="text-small">
+                                      Forgot your password?
+                                    </a>
+                                </p>
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+                    </div> <!-- end col -->
                 </div>
-              </div>
+                <!-- end row -->
             </div>
-            
-          </div>
+            <!-- end container -->
         </div>
-      </div>
-    </section>
-  </div>
-  <!-- General JS Scripts -->
-  <script src="{{ asset('assets/js/app.min.js') }}"></script>
-  <!-- JS Libraies -->
-  <!-- Page Specific JS File -->
-  <!-- Template JS File -->
-  <script src="{{ asset('assets/js/scripts.js') }}"></script>
-  <!-- Custom JS File -->
-  <script src="{{ asset('assets/js/custom.js') }}"></script>
-</body>
+        <!-- end page -->
 
 
-<!-- auth-login.html  21 Nov 2019 03:49:32 GMT -->
+        <footer class="footer footer-alt">
+            2020 - <script>document.write(new Date().getFullYear())</script> &copy; PaceNet Ticketing System. 
+        </footer>
+
+        <!-- Vendor js -->
+        <script src="{{ asset('/login/js/vendor.min.js') }}"></script>
+
+        <!-- App js -->
+        <script src="{{ asset('/login/js/app.min.js') }}"></script>
+        
+    </body>
 </html>

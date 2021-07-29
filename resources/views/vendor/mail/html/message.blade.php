@@ -1,5 +1,5 @@
-@component('mail::layout')
-{{-- Header --}}
+<!-- @component('mail::layout')
+
 
 {{-- Body --}}
 {{ $slot }}
@@ -13,6 +13,7 @@
 @endslot
 @endisset
 
-{{-- Footer --}}
+
 
 @endcomponent
+ -->
