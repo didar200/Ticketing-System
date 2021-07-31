@@ -348,7 +348,7 @@ class TicketController extends Controller
             $customer = $customer->id;
         }
 
-        $tickets = Ticket::with('user','group','customer')->where('customer_id', $customer)->get()->toArray();
+        $tickets = Ticket::with('user','group','customer')->where('customer_id', $customer)->orderBy('id', 'DESC')->get()->toArray();
 
         $search_view   = view('ticket.searchTicketAjax', compact('tickets'))->render();
         $data['data'] = json_encode($search_view);

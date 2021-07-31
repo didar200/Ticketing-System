@@ -80,11 +80,16 @@ Route::middleware('AuthCheck')->group(function(){
 		Route::get('/customerEmail', [CustomerController::class, 'customerEmail'])->name('customerEmail');	
 		Route::post('/customerEmail', [CustomerController::class, 'customerEmailProcess']);
 
+		Route::get('/customerEmailHistory', [CustomerController::class, 'customerEmailHistory'])->name('customer.emailHistory');
+		Route::get('/detailCustomerEmail', [CustomerController::class, 'detailCustomerEmail'])->name('customer.detailCustomerEmail');
+
+		Route::post('/getCustomerByPop', [CustomerController::class, 'getCustomerByPop'])->name('getCustomerByPop');
+
 		Route::get('/smtpConfigure', [SmtpConfigurationController::class, 'smtpConfigure'])->name('smtpConfigure');	
 		Route::POST('/smtpConfigure', [SmtpConfigurationController::class, 'smtpConfigureProcess']);
 
 		Route::get('/emailNotification', [UserNotificationController::class, 'emailNotification'])->name('emailNotification');	
-		Route::POST('/emailNotification', [UserNotificationController::class, 'emailNotificationProcess']);
+		Route::POST('/emailNotification', [UserNotificationController::class, 'emailNotificationProcess']);		
 
 	});
 	

@@ -43,7 +43,7 @@
                     </div>
 
                     <div class="row">
-                      <div class="fallback form-group col-md-5 col-sm-12">
+                      <div class="fallback form-group col-md-6 col-sm-12">
                         <label for="attachment">Attachment:</label>
                         <input name="attachment" type="file" class="form-control" id="attachment" />
                         (<b>jpg, png, gif, txt and pdf</b> files are allowed) Max: 5MB
@@ -54,7 +54,7 @@
                         
                       </div>
 
-                      <div class="form-group col-md-4 col-sm-12">
+                      <div class="form-group col-md-6 col-sm-12">
                         <div for="status">Select Customer Category: <span class="text-danger">*</span></div>
                         <div class="pretty p-switch">
                           <input type="radio" name="status" value="2" />
@@ -78,14 +78,24 @@
                         </div>
 
                       </div>
+                    </div>
 
-                      <div class="form-group col-md-3 col-sm-12">
+                    <div class="row">
+
+                      <div class="form-group col-md-6 col-sm-12">
                         <label>POP:<span class="text-danger">*</span></label>
-                        <select class="custom-select" name="pop">
+                        <select class="custom-select" name="pop" id="pop-customer">
                           <option value="0">All</option>
                           @foreach($pops as $pop)
                             <option value="{{ $pop->id }}">{{ $pop->pop_name }}</option>
                           @endforeach
+                        </select>
+                      </div>
+
+                      <div class="form-group col-md-6 col-sm-12">
+                        <label><b>Customer:</b><span class="text-danger">*</span></label>
+                        <select class="custom-select" id="customer-pop" name="customer">
+                          <option value="0">All</option>
                         </select>
                       </div>
                       
@@ -105,3 +115,30 @@
   </div>
 
 @endsection
+
+
+@push('scripts')
+
+<script>
+  $(document).ready(function () {
+      $('#pop-customer').on('change', function () {
+          var id = this.value;
+          $("#customer-pop").html('');
+          $.ajax({
+              url: "{{ route('getCustomerByPop') }}",
+              type: "POST",
+              data: {
+                  id: id,
+                  _token: '{{csrf_token()}}'
+              },
+              dataType: 'json',
+              success: function (data) {
+                  $('#customer-pop').html(data.html);
+              }
+          });
+      });
+      
+  });
+
+</script>
+@endpush

@@ -24,6 +24,7 @@
   <link rel="stylesheet" href="{{ asset('assets/bundles/pretty-checkbox/pretty-checkbox.min.css') }}">
   <link rel='shortcut icon' type='image/x-icon' href="{{ asset('assets/img/logo.png') }} "/>
   <link rel="stylesheet" href="{{ asset('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/bundles/select2/dist/css/select2.min.css') }}">
 
 
   <style type="text/css">
@@ -165,6 +166,7 @@
                       data-feather="mail" class="side-color"></i><span class="side-color">Email</span></a>
                   <ul class="dropdown-menu">
                     <li><a href="{{ route('customerEmail') }}"><span style="color: #FFF;">Email To Customer</span></a></li>
+                    <li><a href="{{ route('customer.emailHistory') }}"><span style="color: #FFF;">Email History</span></a></li>
                   </ul>
                 </li>
 
@@ -219,6 +221,7 @@
   <!-- Custom JS File -->
   <script src="{{ asset('assets/js/custom.js') }}"></script>
   <script src="{{ asset('assets/js/page/ion-icons.js') }}"></script>
+  <script src="{{ asset('assets/bundles/select2/dist/js/select2.full.min.js') }}"></script>
 
 
 

@@ -7,6 +7,7 @@ use App\Models\Customer;
 use App\Notifications\CustomerEmailNotification;
 use Illuminate\Support\Facades\Notification;
 use App\Models\Pop;
+use App\Models\CustomerMailHistory;
 
 class CustomerController extends Controller
 {
@@ -127,6 +128,34 @@ class CustomerController extends Controller
         return $data;
     }
 
+    public function getCustomerByPop(Request $request)
+    {
+
+        $html = '';
+
+        if($request->id == 0)
+        {
+            $html = '<option value="'.$request->id.'">'.'All'.'</option>';
+        }
+
+        else
+        {
+            $customers = Customer::with('pop')->select('id','customer_id','name','email','phone','address','pop_id','status')->orderBy('customer_id')->where('pop_id', $request->id)->get();
+
+            // $html = view('bladeName', compact('data'));
+            
+            $html .= '<option value="'.'0'.'">'.'All'.'</option>';
+            foreach($customers as $customer):
+                $html .= '<option value="'.$customer->id.'">'.$customer->customer_id.'('.$customer->name.')</option>';
+            endforeach;
+
+        }
+        
+
+        $data['status'] = 'success';
+        $data['html'] = $html;
+        return response()->json($data);
+    }
 
 
     public function customerEmail()
@@ -165,18 +194,40 @@ class CustomerController extends Controller
         {
             if($request->status == 1)
             {
-                $customers = Customer::select('email')->where('status', 1)->where('pop_id', $request->pop)->get();
+                if($request->customer == 0)
+                {
+                    $customers = Customer::select('email')->where('status', 1)->where('pop_id', $request->pop)->get();
+                }
+                else
+                {
+                    $customers = Customer::select('email')->where('status', 1)->where('id', $request->customer)->get();
+                }
+                
             }
             elseif ($request->status == 0) 
             {
-                $customers = Customer::select('email')->where('status', 0)->where('pop_id', $request->pop)->get();
+                
+                if($request->customer == 0)
+                {
+                    $customers = Customer::select('email')->where('status', 0)->where('pop_id', $request->pop)->get();
+                }
+                else
+                {
+                    $customers = Customer::select('email')->where('status', 0)->where('id', $request->customer)->get();
+                }
             }
             else
             {
-                $customers = Customer::select('email')->get();
+                if($request->customer == 0)
+                {
+                    $customers = Customer::select('email')->where('pop_id', $request->pop)->get();
+                }
+                else
+                {
+                    $customers = Customer::select('email')->where('id', $request->customer)->get();
+                }
             }
         }
-        
         
 
         if($request->hasfile('attachment'))
@@ -185,17 +236,93 @@ class CustomerController extends Controller
                 'attachment' => 'required|mimes:jpeg,jpg,png,gif,txt,pdf|max:5120'
              ]);
 
-            $name = $request->file('attachment')->getClientOriginalName();
+            $name = time().'_'.$request->file('attachment')->getClientOriginalName();
             $request->attachment->move(public_path('/assets/CustomerAttachment/'), $name);
-            $attach = '/assets/CustomerAttachment/'.$name;  
-            
+            $attach = '/assets/CustomerAttachment/'.$name;   
         }
+
+        // if($request->hasfile('attachment'))
+        // {
+        //     $request->validate([
+        //         'attachment' => 'required',
+        //         'attachment.*' => 'mimes:jpeg,jpg,png,gif,txt,pdf|max:5120'
+        //      ]);
+
+        //     foreach($request->file('attachment') as $file)
+        //     {
+        //         $name = time().'_'.$file->getClientOriginalName();
+        //         $file->move(public_path('/assets/CustomerAttachment/'), $name);
+        //         $imgData[] = $name;  
+        //     }
+
+        //     $ticket->attachment = json_encode($imgData);
+        // }
+
 
         foreach($customers as $customer)
         {
             Notification::route('mail' , $customer->email)->notify(new CustomerEmailNotification($subject, $body, $attach));
         }
 
+        $customerMailHistory = new CustomerMailHistory();
+
+        $customerMailHistory->subject = $request->subject;
+        $customerMailHistory->body = $request->body;
+        $customerMailHistory->attachment = $attach;
+
+        if($request->pop == 0)
+        {
+            $customerMailHistory->pop = 'All';
+        }
+        else
+        {
+            $pop = Pop::select('pop_name')->find($request->pop);
+            $customerMailHistory->pop = $pop->pop_name;
+        }
+
+        if($request->customer == 0)
+        {
+            $customerMailHistory->customer = 'All';
+        }
+        else
+        {
+            $customer = Customer::select('customer_id','name')->find($request->customer);
+            $customerMailHistory->customer = $customer->customer_id.'('.$customer->name.')';
+        }
+        
+        
+        if($request->status == 0)
+        {
+            $customerMailHistory->category = 'Inactive';
+        }
+        elseif ($request->status == 1) 
+        {
+            $customerMailHistory->category = 'Active';
+        }
+        else
+        {
+            $customerMailHistory->category = 'All';
+        }
+        
+        $customerMailHistory->save();
+
         return back()->with('email_send', 'Email sending completed.');
+    }
+
+    public function customerEmailHistory()
+    {
+        $emailHistories = CustomerMailHistory::orderBy('id', 'DESC')->paginate(30);
+        return view('customer.customerEmailHistory', compact('emailHistories'));
+    }
+
+    public function detailCustomerEmail(Request $request)
+    {
+        $emailHistory = CustomerMailHistory::select('subject','body','attachment')->find($request->id);
+
+        $detail_view   = view('customer.customerEmailDetailAjax', compact('emailHistory'))->render();
+        $data['data'] = json_encode($detail_view);
+        $data['status'] = 'success';
+
+        return $data;
     }
 }

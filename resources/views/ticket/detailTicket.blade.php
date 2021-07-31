@@ -47,7 +47,14 @@
                         <b>Subject: </b>
                         <br>
                         <p>
-                          {!! $ticket->title !!}
+                          @if(auth()->user()->role == 1)
+                            <div class="form-group">
+                              <input class="form-control" type="text" name="subject" value="{!! $ticket->title  !!}">
+                            </div>
+                          @else
+                            {!! $ticket->title !!}
+                          @endif
+                          
                         </p>
                       </td>
                     </tr>
@@ -57,7 +64,16 @@
                         <br>
                         <b>Body: </b>
                         <p>
-                          {!! $ticket->description !!}
+                          @if(auth()->user()->role == 1)
+                          <div class="form-group">
+                            <textarea class="summernote-simple" name="body">{!! $ticket->description !!}</textarea>
+                            @error('notes')
+                              <div class="text-danger">* {{ $message }}</div>
+                            @enderror
+                          </div>
+                          @else
+                            {!! $ticket->description !!}
+                          @endif
                         </p>
 
                         <p>
@@ -70,6 +86,18 @@
                         </p>
                       </td>
                     </tr>
+                    @if(auth()->user()->role == 1)
+                      <tr>
+                        <td>
+                          <div class="form-group"> 
+                            <button type="submit" class="btn btn-primary btn-lg btn-block">
+                              Save
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    @endif
+                    
 
                     <tr>
                       <td>

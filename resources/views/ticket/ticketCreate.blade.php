@@ -17,13 +17,13 @@
                     @if(Session::has('create'))
                       <div class="alert alert-success">{{ Session::get('create') }}</div>
                     @endif
-                    
+
                     <div class="row">
                       <div class="form-group col-md-6 col-sm-12">
                         <label><b>Select Customer:</b><span class="text-danger">*</span></label>
-                        <select class="custom-select" name="customer_id">
+                        <select class="custom-select form-control select2" name="customer_id">
                           @foreach($customers as $customer)
-                          <option value="{{ $customer->id }}">{{ $customer->customer_id}} ({{ $customer->name }})</option>
+                            <option value="{{ $customer->id }}">{{ $customer->customer_id}} ({{ $customer->name }})</option>
                           @endforeach
 
                         </select>

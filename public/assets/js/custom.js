@@ -111,5 +111,22 @@ function searchCustomerListPop()
     });
 }
 
+function detailCustomerEmail(id)
+{
+
+    $.ajax({
+        url: "detailCustomerEmail?id="+id,
+        type: "GET",
+        dataType: "JSON",
+        success: function(response){
+            let list = JSON.parse(response.data);
+            $("#detailCustomerEmail").html(list);
+        },
+        error: function(jqXHR, textStatus, errorThrown){
+            console.log(textStatus, errorThrown);
+        }
+    });
+}
+
 
 
