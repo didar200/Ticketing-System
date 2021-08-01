@@ -48,7 +48,7 @@ class CustomerController extends Controller
     public function customerList()
     {
 
-        $customers = Customer::with('pop')->select('id','customer_id','name','email','phone','address','pop_id','status')->orderBy('customer_id')->paginate(30);
+        $customers = Customer::with('pop')->select('id','customer_id','name','email','phone','address','pop_id','status')->orderBy('customer_id')->paginate(100);
 
         $pops = Pop::select('id', 'pop_name')->where('status', 1)->orderBy('pop_name')->get();
         return view('customer.customerList', compact('customers','pops'));
@@ -311,7 +311,7 @@ class CustomerController extends Controller
 
     public function customerEmailHistory()
     {
-        $emailHistories = CustomerMailHistory::orderBy('id', 'DESC')->paginate(30);
+        $emailHistories = CustomerMailHistory::orderBy('id', 'DESC')->paginate(100);
         return view('customer.customerEmailHistory', compact('emailHistories'));
     }
 

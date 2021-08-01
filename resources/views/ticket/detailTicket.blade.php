@@ -16,6 +16,10 @@
     background: #B0E0E6;
   }
 
+  .lock-unlock{
+    display: none;
+  }
+
 </style>
 
 
@@ -40,64 +44,70 @@
 
             <div class="row">
               <div class="col-md-6 col-sm-12" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 10px;">
-               
+
+                @if(auth()->user()->role == 1)
+                  <span style="margin-left: 87%;">
+                    <button id="locklock" class="btn btn-primary">
+                      <i data-feather="unlock"></i>
+                    </button>
+                  </span>
+                @endif
+                <form method="POST" action="{{ route('ticketBodyUpdate') }}">
+                  @csrf
                   <table class="table table-bordered table-sm table-light">
                     <tr>
-                      <td class="row-link">
-                        <b>Subject: </b>
-                        <br>
-                        <p>
-                          @if(auth()->user()->role == 1)
-                            <div class="form-group">
-                              <input class="form-control" type="text" name="subject" value="{!! $ticket->title  !!}">
+                      <td>
+                        <div>
+                          <div>
+                            <input type="hidden" name="id" value="{{ $ticket->id }}">
+                            <b>Subject: </b> 
+                          </div>
+                            <div class="form-group lock-unlock">
+                              <input class="form-control" type="text" name="title" value="{!! $ticket->title  !!}">
                             </div>
-                          @else
-                            {!! $ticket->title !!}
-                          @endif
-                          
-                        </p>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td class="row-link">
-                        <br>
-                        <b>Body: </b>
-                        <p>
-                          @if(auth()->user()->role == 1)
-                          <div class="form-group">
-                            <textarea class="summernote-simple" name="body">{!! $ticket->description !!}</textarea>
-                            @error('notes')
+                            @error('title')
                               <div class="text-danger">* {{ $message }}</div>
                             @enderror
-                          </div>
-                          @else
-                            {!! $ticket->description !!}
-                          @endif
-                        </p>
 
-                        <p>
+                            <div class="unlock-lock">
+                              {!! $ticket->title !!}
+                            </div>
+                        </div>
+                        <br>
+                        <div>
+                          <b>Description: </b>
+                            <div class="form-group lock-unlock">
+                              <textarea class="summernote-simple" name="description">{!! $ticket->description !!}</textarea>
+                              @error('description')
+                                <div class="text-danger">* {{ $message }}</div>
+                              @enderror
+                            </div>
+                            <div class="unlock-lock">
+                              {!! $ticket->description !!}
+                            </div>    
+                        </div>
+                        <br>
+                        <div>
                           @if($ticket->attachment != null)
                             <b>Attachment:</b>
                             @foreach(json_decode($ticket->attachment, true) as $attachment)
                               <a href="/assets/attachment/{{ $attachment }}" target="_blank">{{ $attachment }}</a>,&nbsp;
                             @endforeach
                           @endif
-                        </p>
+                        </div>
+                        <br>
+                        <div class="form-group lock-unlock"> 
+                          <button type="submit" class="btn btn-primary btn-lg btn-block">
+                            Save
+                          </button>
+                        </div>
+                          
                       </td>
                     </tr>
-                    @if(auth()->user()->role == 1)
-                      <tr>
-                        <td>
-                          <div class="form-group"> 
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">
-                              Save
-                            </button>
-                          </div>
-                        </td>
-                      </tr>
-                    @endif
-                    
+                  </table> 
+                </form>        
+
+                  <table class="table table-bordered table-sm table-light">
 
                     <tr>
                       <td>
@@ -352,4 +362,14 @@
   });
 
 </script>
+
+<script>
+  $(document).ready(function(){
+    $('#locklock').click(function(){
+      $('.lock-unlock').toggle();
+      $('.unlock-lock').toggle();
+    });
+  });
+</script>
+
 @endpush

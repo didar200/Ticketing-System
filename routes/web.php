@@ -89,7 +89,9 @@ Route::middleware('AuthCheck')->group(function(){
 		Route::POST('/smtpConfigure', [SmtpConfigurationController::class, 'smtpConfigureProcess']);
 
 		Route::get('/emailNotification', [UserNotificationController::class, 'emailNotification'])->name('emailNotification');	
-		Route::POST('/emailNotification', [UserNotificationController::class, 'emailNotificationProcess']);		
+		Route::POST('/emailNotification', [UserNotificationController::class, 'emailNotificationProcess']);
+
+		Route::post('/ticketBodyUpdate', [TicketController::class, 'ticketBodyUpdateProcess'])->name('ticketBodyUpdate');		
 
 	});
 	

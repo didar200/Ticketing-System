@@ -91,7 +91,7 @@ class UserController extends Controller
     public function userList()
     {
         $groups = Group::select('id','group_name')->get();
-        $users = User::with('groups')->select('id','first_name','last_name','email','phone','status','role','photo')->orderBy('first_name')->paginate(30);
+        $users = User::with('groups')->select('id','first_name','last_name','email','phone','status','role','photo')->orderBy('first_name')->paginate(100);
         return view('admin.userList', compact('users','groups'));
     }
 
@@ -201,7 +201,7 @@ class UserController extends Controller
         if($request->search == 0)
         {
             $group = '';
-            $users = User::with('groups')->select('id','first_name','last_name','email','phone','status','role','photo')->orderBy('first_name')->paginate(30);
+            $users = User::with('groups')->select('id','first_name','last_name','email','phone','status','role','photo')->orderBy('first_name')->paginate(100);
             $search_view   = view('admin.searchUserListByGroup', compact('users','group'))->render();
         }
         else

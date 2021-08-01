@@ -30,7 +30,7 @@ class PopController extends Controller
 
     public function popList()
     {
-    	$pops = Pop::select('id','pop_name','address','status')->orderBy('pop_name')->paginate(30);
+    	$pops = Pop::select('id','pop_name','address','status')->orderBy('pop_name')->paginate(100);
 
     	return view('pop.popList', compact('pops'));
     }

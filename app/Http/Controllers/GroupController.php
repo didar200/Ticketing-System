@@ -32,7 +32,7 @@ class GroupController extends Controller
 
     public function groupList()
     {
-    	$groups = Group::select('id','group_name', 'status')->orderBy('group_name')->paginate(30);
+    	$groups = Group::select('id','group_name', 'status')->orderBy('group_name')->paginate(100);
 
     	return view('group.groupList', compact('groups'));
     }

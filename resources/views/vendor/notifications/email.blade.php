@@ -1,8 +1,3 @@
-@component('mail::message')
-{{-- Greeting --}}
-
-
-{{-- Intro Lines --}}
 @foreach ($introLines as $line)
 {!! $line !!}
 
@@ -24,16 +19,3 @@
 {{ $actionText }}
 @endcomponent
 @endisset
-
-{{-- Outro Lines --}}
-@foreach ($outroLines as $line)
-{!! $line !!}
-
-@endforeach
-
-{{-- Salutation --}}
-
-
-{{-- Subcopy --}}
-
-@endcomponent

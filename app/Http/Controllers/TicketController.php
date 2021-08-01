@@ -99,7 +99,7 @@ class TicketController extends Controller
     public function myTicketList()
     {
         $status = array('Open', 'Reopen', 'Pending');
-        $tickets = Ticket::with('user','group','customer')->where('user_id', auth()->user()->id)->whereIn('status', $status)->paginate(10);
+        $tickets = Ticket::with('user','group','customer')->where('user_id', auth()->user()->id)->whereIn('status', $status)->paginate(100);
         $myCount = Ticket::with('user','group','customer')->where('user_id', auth()->user()->id)->whereIn('status', $status)->count();
 
         $gCount = 0;
@@ -399,6 +399,24 @@ class TicketController extends Controller
         $message = "No Data Found!";
         
         return view('ticket.searchCustomerTicket', compact('message','tickets'));
+    }
+
+    public function ticketBodyUpdateProcess(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+
+
+        $ticket = Ticket::find($request->id);
+
+        $ticket->title = $request->title;
+        $ticket->description = $request->description;
+
+        $ticket->save();
+
+        return back()->with('update', 'information updated!');
     }
 
 
