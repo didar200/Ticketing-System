@@ -8,7 +8,7 @@
           <div class="col-md-12">
             <div class="card card-primary">
               <div class="card-header text-center">
-                <h4>Email To Customers</h4>
+                <h4>Email To Clients</h4>
               </div>
               <div class="card-body">
                 <form method="POST" action="{{ route('customerEmail') }}" enctype="multipart/form-data">
@@ -55,7 +55,7 @@
                       </div>
 
                       <div class="form-group col-md-6 col-sm-12">
-                        <div for="status">Select Customer Category: <span class="text-danger">*</span></div>
+                        <div for="status">Select Client Category: <span class="text-danger">*</span></div>
                         <div class="pretty p-switch">
                           <input type="radio" name="status" value="2" />
                           <div class="state p-success">
@@ -93,7 +93,7 @@
                       </div>
 
                       <div class="form-group col-md-6 col-sm-12">
-                        <label><b>Customer:</b><span class="text-danger">*</span></label>
+                        <label><b>Client:</b><span class="text-danger">*</span></label>
                         <select class="custom-select" id="customer-pop" name="customer">
                           <option value="0">All</option>
                         </select>

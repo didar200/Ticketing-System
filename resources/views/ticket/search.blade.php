@@ -29,7 +29,7 @@
               </div> 
             
               <div class="col-6">
-                <input class="form-control" type="search" name="searchCustomer" placeholder="Customer ID." aria-label="Search" data-width="180" id="searchCustomer" onkeyup="customerTicketList()" data-url="{{ URL::to('searchCustomerTicketAjax') }}">
+                <input class="form-control" type="search" name="searchCustomer" placeholder="Client ID." aria-label="Search" data-width="180" id="searchCustomer" onkeyup="customerTicketList()" data-url="{{ URL::to('searchCustomerTicketAjax') }}">
               </div> 
             </div>
 
@@ -40,7 +40,7 @@
                     <thead>
                       <tr>
                         <th>#</th>
-                        <th>Customer</th>
+                        <th>Client</th>
                         <th>Group</th>
                         <th>Assign To</th>
                         <th>Status</th>

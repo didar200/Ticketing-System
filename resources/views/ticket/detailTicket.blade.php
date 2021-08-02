@@ -27,13 +27,13 @@
   <section class="section">
     <div class="row">
       <div class="col-12">
-        <div class="card card-primary" style="border-style:solid;border-width: 1px 1px 1px 1px;">
+        <div class="card">
           <div class="card-body">
             <div class="row">
               <div class="col-12">
                 <label>
                   <b>TT #: </b>{{ $ticket->id}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                  <b>Customer Name: </b>{{ $ticket->customer->customer_id}} ({{ $ticket->customer->name }}). &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <b>Client Name: </b>{{ $ticket->customer->customer_id}} ({{ $ticket->customer->name }}). &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <b>Created By:</b> {{ $ticket->created_user }}. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <b>Created Date:</b> {{ date_format($ticket->created_at, 'd M Y, h:i A') }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <b>Status:</b> {{ $ticket->status }}.
@@ -43,7 +43,7 @@
             </div>
 
             <div class="row">
-              <div class="col-md-6 col-sm-12" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 10px;">
+              <div class="col-md-6 col-sm-12" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 2px;">
 
                 @if(auth()->user()->role == 1)
                   <span style="margin-left: 87%;">
@@ -154,7 +154,7 @@
 
               </div> 
 
-              <div class="col-md-6 col-sm-12" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 10px;">
+              <div class="col-md-6 col-sm-12" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 2px;">
                 <form method="POST" action="{{ route('ticketUpdate') }}">
                   @csrf 
 
@@ -273,15 +273,16 @@
             </div>
 
             <div class="row">
-              <div class="form-group col-md-6 col-sm-12" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 10px;">
+              <div class="form-group col-md-6 col-sm-12" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 2px;">
                 <div>
                   <b>Notes: </b>
                 </div>
                 <hr>
                 
                 <table class="table table-bordered table-sm table-light">
+
                   @foreach($notes as $note)
-                    <tr style="border-style:solid;border-width: 0px 0px 5px 0px; border-color: #E8F8F5;border-radius: 10px;">
+                    <tr style="border-style:solid;border-width: 0px 0px 5px 0px; border-color: #E8F8F5;border-radius: 2px;">
                       <td class="row-link">
                         {!! $note->notes !!} <br>
 
@@ -307,7 +308,7 @@
 
               </div>
 
-              <div class="form-group col-md-6 col-sm-12" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 10px;">
+              <div class="form-group col-md-6 col-sm-12" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 2px;">
                 <div>
                   <b>History: </b>
                 </div>
@@ -315,7 +316,7 @@
                 
                 <table class="table table-bordered table-sm table-light">
                 @foreach($histories as $history)
-                  <tr style="border-style:solid;border-width: 0px 0px 5px 0px; border-color: #E8F8F5;border-radius: 10px;">
+                  <tr style="border-style:solid;border-width: 0px 0px 5px 0px; border-color: #E8F8F5;border-radius: 2px;">
                     <td class="row-link">
                       {{ $history->history}} at {{ date_format($history->created_at, 'd M Y, h:i A') }}
                     </td>

@@ -3,11 +3,11 @@
   <div class="row">
 
     <div class="form-group col-6">
-      <label for="customer_id"><b>Customer ID: </b>{{ $customer->customer_id }}</label>
+      <label for="customer_id"><b>Client ID: </b>{{ $customer->customer_id }}</label>
     </div>
 
     <div class="form-group col-6">
-      <label for="name"><b>Customer Name: </b>{{ $customer->name }}</label>
+      <label for="name"><b>Client Name: </b>{{ $customer->name }}</label>
     </div>  
     
   </div>

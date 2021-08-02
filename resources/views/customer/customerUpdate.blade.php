@@ -8,7 +8,7 @@
           <div class="col-md-12">
             <div class="card card-primary">
               <div class="card-header text-center">
-                <h4>Update Customer</h4>
+                <h4>Update Client</h4>
               </div>
               <div class="card-body">
                 <form method="POST" action="{{ route('customer.updateProcess') }}">
@@ -20,7 +20,7 @@
                       <input type="hidden" name="id" value="{{ $customer->id }}">
 
                       <div class="form-group col-md-6 col-sm-12">
-                        <label for="customer_id">Customer ID<span class="text-danger">*</span></label>
+                        <label for="customer_id">Client ID<span class="text-danger">*</span></label>
                         <input id="customer_id" type="text" class="form-control" name="customer_id" value="{{ $customer->customer_id }}">
                         @error('customer_id')
                             <div class="text-danger">* {{ $message }}</div>

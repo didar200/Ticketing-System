@@ -37,7 +37,7 @@
                       <th>#</th>
                       <th>Subject</th>
                       <th>POP</th>
-                      <th>Customer</th>
+                      <th>Client</th>
                       <th>Category</th>
                       <th>Date</th>
                       <th>Action</th>

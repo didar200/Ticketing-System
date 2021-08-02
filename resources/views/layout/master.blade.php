@@ -119,11 +119,11 @@
 
               <li class="dropdown">
                 <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                    data-feather="user-check" class="side-color"></i><span class="side-color">Customers</span></a>
+                    data-feather="user-check" class="side-color"></i><span class="side-color">Clients</span></a>
                 <ul class="dropdown-menu">
-                  <li><a href="{{ route('customer.list') }}"><span style="color: #FFF;">Customer List</span></a></li>
+                  <li><a href="{{ route('customer.list') }}"><span style="color: #FFF;">Client List</span></a></li>
                   @if(auth()->user()->role == 1)
-                    <li><a href="{{ route('customer.create') }}"><span style="color: #FFF;">Add Customer</span></a></li>
+                    <li><a href="{{ route('customer.create') }}"><span style="color: #FFF;">Add Client</span></a></li>
                   @endif
                 </ul>
               </li>
@@ -165,7 +165,7 @@
                   <a href="#" class="menu-toggle nav-link has-dropdown"><i
                       data-feather="mail" class="side-color"></i><span class="side-color">Email</span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="{{ route('customerEmail') }}"><span style="color: #FFF;">Email To Customer</span></a></li>
+                    <li><a href="{{ route('customerEmail') }}"><span style="color: #FFF;">Email To Client</span></a></li>
                     <li><a href="{{ route('customer.emailHistory') }}"><span style="color: #FFF;">Email History</span></a></li>
                   </ul>
                 </li>

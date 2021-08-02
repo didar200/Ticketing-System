@@ -20,7 +20,7 @@
 
                     <div class="row">
                       <div class="form-group col-md-6 col-sm-12">
-                        <label><b>Select Customer:</b><span class="text-danger">*</span></label>
+                        <label><b>Select Client:</b><span class="text-danger">*</span></label>
                         <select class="custom-select form-control select2" name="customer_id">
                           @foreach($customers as $customer)
                             <option value="{{ $customer->id }}">{{ $customer->customer_id}} ({{ $customer->name }})</option>
@@ -56,7 +56,7 @@
                       </div>
 
                       <div class="form-group col-md-6 col-sm-12">
-                        <label><b>Assign to:</b><span class="text-danger">*</span></label>
+                        <label><b>Assign To:</b><span class="text-danger">*</span></label>
                         <select class="custom-select" id="users-group" name="user_id">
                           
                         </select>

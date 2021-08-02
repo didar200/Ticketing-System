@@ -25,10 +25,10 @@
           <div class="card">
             <div class="card-header">
               
-              <div><h4>Customer List:</h4></div>
+              <div><h4>Client List:</h4></div>
 
               <div style="margin-left: auto;">
-                <input class="form-control" type="search" name="search" placeholder="Customer ID." aria-label="Search" data-width="180" data-height="40" id="search" onkeyup="searchCustomerList()" data-url="{{ URL::to('searchCustomerList') }}">
+                <input class="form-control" type="search" name="search" placeholder="Client ID." aria-label="Search" data-width="180" data-height="40" id="search" onkeyup="searchCustomerList()" data-url="{{ URL::to('searchCustomerList') }}">
               </div>
 
               <div style="margin-left: auto;">
@@ -42,7 +42,7 @@
 
               @if(auth()->user()->role == 1)
                 <div style="margin-left: auto;">
-                  <a class="btn btn-primary" href="{{ route('customer.create') }}">Add Customer</a>
+                  <a class="btn btn-primary" href="{{ route('customer.create') }}">Add Client</a>
                 </div>
               @endif
             </div>
@@ -52,7 +52,7 @@
                 <table class="table table-bordered table-sm table-light" id="table-1">
                   <thead>
                     <tr>
-                      <th>Customer#</th>
+                      <th>Client#</th>
                       <th>Name</th>
                       <th>Phone</th>
                       <th>POP</th>
@@ -104,7 +104,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="myLargeModalLabel"><b>Customer Details: </b></h5>
+        <h5 class="modal-title" id="myLargeModalLabel"><b>Client Details: </b></h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

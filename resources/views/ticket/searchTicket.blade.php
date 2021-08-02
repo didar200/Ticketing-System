@@ -31,7 +31,7 @@
                     <thead>
                       <tr>
                         <th>ID</th>
-                        <th>Customer</th>
+                        <th>Client</th>
                         <th>Group</th>
                         <th>Assign To</th>
                         <th>Status</th>

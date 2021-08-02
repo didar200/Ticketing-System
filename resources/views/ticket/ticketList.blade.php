@@ -69,7 +69,7 @@
                       <thead>
                         <tr>
                           <th>TT#</th>
-                          <th>Customer</th>
+                          <th>Client</th>
                           <th>Group</th>
                           <th>Assign To</th>
                           <th>Status</th>
@@ -100,7 +100,7 @@
                       <thead>
                         <tr>
                           <th>TT#</th>
-                          <th>Customer</th>
+                          <th>Client</th>
                           <th>Group</th>
                           <th>Assign To</th>
                           <th>Status</th>
