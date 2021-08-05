@@ -104,7 +104,15 @@ class CustomerController extends Controller
         $customer->address = $request->address;
         $customer->pop_id = $request->pop;
         $customer->status = $request->status;
-        $customer->user_id = $request->user;
+
+        if($request->user == null)
+        {
+            $customer->user_id = 1;
+        }
+        else
+        {
+            $customer->user_id = $request->user;
+        }
 
         $customer->save();
 

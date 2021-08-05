@@ -58,11 +58,15 @@ class UserController extends Controller
        //      error message then redirect form page.
        //  endif;
 
+
         $groups = $request->groups;
 
-        foreach($groups as $group)
+        if($groups != null)
         {
-        	$user->groups()->attach($group);
+            foreach($groups as $group)
+            {
+                $user->groups()->attach($group);
+            }
         }
         
 

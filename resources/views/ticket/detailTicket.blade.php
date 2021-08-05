@@ -358,7 +358,7 @@
       </div>
       <div class="modal-body">
         <div id="detailCustomers">
-          <form method="POST" action="{{ route('ticketFileDelete',['attachment' => $attachment]) }}">
+          <form method="POST" action="">
             @csrf
 
             <input type="hidden" name="id" value="">
