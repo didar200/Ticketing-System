@@ -25,20 +25,20 @@ class MailConfigProvider extends ServiceProvider
      */
     public function boot()
     {
-        $configuration = SmtpConfiguration::find(1);
+        // $configuration = SmtpConfiguration::find(1);
 
-        $config = array(
-            'driver'     =>     'smtp',
-            'mailers'    =>     'smtp',
-            'transport'  =>     'smtp',
-            'host'       =>     $configuration->host,
-            'port'       =>     $configuration->port,
-            'username'   =>     $configuration->username,
-            'password'   =>     $configuration->password,
-            'encryption' =>     $configuration->encryption,
-            'from'       =>     array('address' => $configuration->address, 'name' => $configuration->name),
-        );
+        // $config = array(
+        //     'driver'     =>     'smtp',
+        //     'mailers'    =>     'smtp',
+        //     'transport'  =>     'smtp',
+        //     'host'       =>     $configuration->host,
+        //     'port'       =>     $configuration->port,
+        //     'username'   =>     $configuration->username,
+        //     'password'   =>     $configuration->password,
+        //     'encryption' =>     $configuration->encryption,
+        //     'from'       =>     array('address' => $configuration->address, 'name' => $configuration->name),
+        // );
 
-        Config::set('mail', $config);
+        // Config::set('mail', $config);
     }
 }
