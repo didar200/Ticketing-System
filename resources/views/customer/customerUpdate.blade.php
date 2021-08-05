@@ -88,6 +88,17 @@
                           @endforeach
                         </select>
                       </div>
+
+                      <div class="form-group col-md-6 col-sm-12">
+                        <label>Sales Person(Member of Marketing Group)<span class="text-danger">*</span></label>
+                        <select class="custom-select" name="user">
+                          @if($groups)
+                            @foreach($groups->users as $user)
+                              <option value="{{ $user->id }}" @if($customer->user->id == $user->id) selected @endif>{{ $user->first_name }} {{ $user->last_name }}</option>
+                            @endforeach
+                          @endif
+                        </select>
+                      </div>
                     </div>
 
                     

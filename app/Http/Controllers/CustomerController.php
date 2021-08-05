@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Customer;
+use App\Models\Group;
 use App\Notifications\CustomerEmailNotification;
 use Illuminate\Support\Facades\Notification;
 use App\Models\Pop;
@@ -14,7 +15,8 @@ class CustomerController extends Controller
     public function customerCreate()
     {
         $pops = Pop::select('id', 'pop_name')->where('status', 1)->orderBy('pop_name')->get();
-    	return view('customer.customerCreate', compact('pops'));
+        $groups = Group::with('users')->where('group_name', 'Marketing')->first();
+    	return view('customer.customerCreate', compact('pops','groups'));
     }
 
     public function customerCreateProcess(Request $request)
@@ -37,7 +39,15 @@ class CustomerController extends Controller
     	$customer->address = $request->address;
     	$customer->status = $request->status;
         $customer->pop_id = $request->pop;
-    	
+
+        if($request->user == null)
+        {
+            $customer->user_id = 1;
+        }
+        else
+        {
+            $customer->user_id = $request->user;
+        }
 
         $customer->save();
         
@@ -48,23 +58,25 @@ class CustomerController extends Controller
     public function customerList()
     {
 
-        $customers = Customer::with('pop')->select('id','customer_id','name','email','phone','address','pop_id','status')->orderBy('customer_id')->paginate(100);
+        $customers = Customer::with('pop','user')->select('id','customer_id','name','email','phone','address','pop_id','status','user_id')->orderBy('customer_id')->paginate(100);
 
         $pops = Pop::select('id', 'pop_name')->where('status', 1)->orderBy('pop_name')->get();
+
         return view('customer.customerList', compact('customers','pops'));
     }
 
     public function customerUpdate(Request $request)
     {
-        $customer = Customer::with('pop')->select('id','customer_id','name','email','phone','address','pop_id','status')->find($request->id);
+        $customer = Customer::with('pop','user')->select('id','customer_id','name','email','phone','address','pop_id','status','user_id')->find($request->id);
         $pops = Pop::select('id','pop_name')->where('status', 1)->orderBy('pop_name')->get();
+        $groups = Group::with('users')->where('group_name', 'Marketing')->first();
 
-        return view('customer.customerUpdate', compact('customer','pops'));
+        return view('customer.customerUpdate', compact('customer','pops','groups'));
     }
 
     public function customerDetailAjax(Request $request)
     {
-        $customer = Customer::with('pop')->select('id','customer_id','name','email','phone','address','pop_id','status')->find($request->id);
+        $customer = Customer::with('pop','user')->select('id','customer_id','name','email','phone','address','pop_id','status','user_id')->find($request->id);
 
         $detail_view   = view('customer.customerDetailAjax', compact('customer'))->render();
         $data['data'] = json_encode($detail_view);
@@ -92,6 +104,7 @@ class CustomerController extends Controller
         $customer->address = $request->address;
         $customer->pop_id = $request->pop;
         $customer->status = $request->status;
+        $customer->user_id = $request->user;
 
         $customer->save();
 
@@ -100,7 +113,7 @@ class CustomerController extends Controller
 
     public function searchCustomerList(Request $request)
     {
-        $customers = Customer::with('pop')->select('id','customer_id','name','email','phone','address','pop_id','status')->orderBy('customer_id')->where('customer_id', 'LIKE',"%{$request->search}%")->get()->toArray();
+        $customers = Customer::with('pop','user')->select('id','customer_id','name','email','phone','address','pop_id','status','user_id')->orderBy('customer_id')->where('customer_id', 'LIKE',"%{$request->search}%")->get()->toArray();
 
         $search_view   = view('customer.searchCustomerList', compact('customers'))->render();
         $data['data'] = json_encode($search_view);
@@ -113,11 +126,11 @@ class CustomerController extends Controller
     {
         if($request->search == 0)
         {
-            $customers = Customer::with('pop')->select('id','customer_id','name','email','phone','address','pop_id','status')->orderBy('customer_id')->get()->toArray();
+            $customers = Customer::with('pop','user')->select('id','customer_id','name','email','phone','address','pop_id','status','user_id')->orderBy('customer_id')->get()->toArray();
         }
         else
         {
-            $customers = Customer::with('pop')->select('id','customer_id','name','email','phone','address','pop_id','status')->orderBy('customer_id')->where('pop_id', $request->search)->get()->toArray();
+            $customers = Customer::with('pop','user')->select('id','customer_id','name','email','phone','address','pop_id','status','user_id')->orderBy('customer_id')->where('pop_id', $request->search)->get()->toArray();
         }
         
 
@@ -140,7 +153,7 @@ class CustomerController extends Controller
 
         else
         {
-            $customers = Customer::with('pop')->select('id','customer_id','name','email','phone','address','pop_id','status')->orderBy('customer_id')->where('pop_id', $request->id)->get();
+            $customers = Customer::with('pop','user')->select('id','customer_id','name','email','phone','address','pop_id','status','user_id')->orderBy('customer_id')->where('pop_id', $request->id)->get();
 
             // $html = view('bladeName', compact('data'));
             
@@ -233,7 +246,7 @@ class CustomerController extends Controller
         if($request->hasfile('attachment'))
         {
             $request->validate([
-                'attachment' => 'required|mimes:jpeg,jpg,png,gif,txt,pdf|max:5120'
+                'attachment' => 'required|mimes:jpeg,jpg,png,gif,txt,pdf,docx,xlsx|max:5120'
              ]);
 
             $name = time().'_'.$request->file('attachment')->getClientOriginalName();

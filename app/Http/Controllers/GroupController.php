@@ -51,9 +51,12 @@ class GroupController extends Controller
         ]);
 
         $group = Group::find($request->id);
+        $slug = Str::slug($request->group_name);
 
         $group->group_name = $request->group_name;
+        $group->slug = $slug;
         $group->status = $request->status;
+
 
         $group->save();
 

@@ -20,6 +20,11 @@
     display: none;
   }
 
+  #file_delete{
+    /*display: none;*/
+  }
+
+
 </style>
 
 
@@ -47,7 +52,7 @@
 
                 @if(auth()->user()->role == 1)
                   <span style="margin-left: 87%;">
-                    <button id="locklock" class="btn btn-primary">
+                    <button id="locklock" class="btn btn-outline-primary">
                       <i data-feather="unlock"></i>
                     </button>
                   </span>
@@ -91,7 +96,12 @@
                           @if($ticket->attachment != null)
                             <b>Attachment:</b>
                             @foreach(json_decode($ticket->attachment, true) as $attachment)
-                              <a href="/assets/attachment/{{ $attachment }}" target="_blank">{{ $attachment }}</a>,&nbsp;
+                            
+                              <a href="/assets/attachment/{{ $attachment }}" target="_blank">{{ $attachment }}</a>&nbsp;
+                              <!-- @if(auth()->user()->role == 1)
+                                <a href="#" data-toggle="modal" data-target="#file-delete" id="conform-modal"><i class="ion-close-round lock-unlock" style="color: red; border: 1px solid red"></i></a>,&nbsp;
+                              @endif -->
+                            
                             @endforeach
                           @endif
                         </div>
@@ -128,7 +138,7 @@
                           <div class="fallback form-group">
                             <label for="attachment"><b>Attachment:</b></label>
                             <input name="attachment[]" type="file" multiple class="form-control"/>
-                            (jpg, png, gif, txt and pdf files are allowed) Max: 2MB
+                            (jpg,png,gif,txt,pdf,docx,xlsx files are allowed) Max: 5MB
                           </div>
                           @if (count($errors) > 0)
                             <div class="text-danger">
@@ -336,6 +346,53 @@
   </section>
 </div>
 
+<div class="modal fade bd-example-modal-lg" id="file-delete" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+        aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="myLargeModalLabel"><b>Client Details: </b></h5> -->
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div id="detailCustomers">
+          <form method="POST" action="{{ route('ticketFileDelete',['attachment' => $attachment]) }}">
+            @csrf
+
+            <input type="hidden" name="id" value="">
+            <div class="row">
+              <div class="form-group col-md-12">
+                <h4>Do you want to delete? </h4>
+              </div>
+              <p></p>
+            </div>
+            
+            <div class="row">
+              <div class="col-md-3">
+               
+              </div>
+              <div class="form-group col-md-6">
+                <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">
+                  <span aria-hidden="true">&times;Cancel</span> 
+                </button>
+                <button type="submit" class="btn btn-danger btn-sm">
+                  Confirm Delete
+                </button>
+              </div>
+
+              <div class="col-md-3">
+              </div>
+            </div>
+            
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 @endsection
 
 
@@ -369,6 +426,7 @@
     $('#locklock').click(function(){
       $('.lock-unlock').toggle();
       $('.unlock-lock').toggle();
+      $('#file_delete').toggle();
     });
   });
 </script>

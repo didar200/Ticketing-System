@@ -52,7 +52,7 @@ class TicketController extends Controller
         {
             $request->validate([
                 'attachment' => 'required',
-                'attachment.*' => 'mimes:jpeg,jpg,png,gif,txt,pdf|max:2048'
+                'attachment.*' => 'mimes:jpeg,jpg,png,gif,txt,pdf,docx,xlsx|max:5120'
              ]);
 
             foreach($request->file('attachment') as $file)
@@ -236,7 +236,7 @@ class TicketController extends Controller
         {
             $request->validate([
                 'attachment' => 'required',
-                'attachment.*' => 'mimes:jpeg,jpg,png,gif,txt,pdf|max:2048'
+                'attachment.*' => 'mimes:jpeg,jpg,png,gif,txt,pdf,docx,xlsx|max:5120'
              ]);
 
             foreach($request->file('attachment') as $file)
@@ -417,6 +417,11 @@ class TicketController extends Controller
         $ticket->save();
 
         return back()->with('update', 'information updated!');
+    }
+
+    public function ticketFileDelete(Request $request)
+    {
+        dd($request->attachment);
     }
 
 

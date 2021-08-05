@@ -94,7 +94,7 @@
                       <div class="fallback form-group col-md-6 col-sm-12">
                         <label for="attachment"><b>Attachment:</b></label>
                         <input name="attachment[]" type="file" multiple class="form-control" id="attachment" />
-                        (<b>jpg, png, gif, txt and pdf</b> files are allowed) Max: 2MB
+                        (<b>jpg,png,gif,txt,pdf,docx,xlsx</b> files are allowed) Max: 5MB
 
                         @if (count($errors) > 0)
                           <div class="text-danger">

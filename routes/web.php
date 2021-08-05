@@ -86,12 +86,14 @@ Route::middleware('AuthCheck')->group(function(){
 		Route::post('/getCustomerByPop', [CustomerController::class, 'getCustomerByPop'])->name('getCustomerByPop');
 
 		Route::get('/smtpConfigure', [SmtpConfigurationController::class, 'smtpConfigure'])->name('smtpConfigure');	
-		Route::POST('/smtpConfigure', [SmtpConfigurationController::class, 'smtpConfigureProcess']);
+		Route::post('/smtpConfigure', [SmtpConfigurationController::class, 'smtpConfigureProcess']);
 
 		Route::get('/emailNotification', [UserNotificationController::class, 'emailNotification'])->name('emailNotification');	
-		Route::POST('/emailNotification', [UserNotificationController::class, 'emailNotificationProcess']);
+		Route::post('/emailNotification', [UserNotificationController::class, 'emailNotificationProcess']);
 
-		Route::post('/ticketBodyUpdate', [TicketController::class, 'ticketBodyUpdateProcess'])->name('ticketBodyUpdate');		
+		Route::post('/ticketBodyUpdate', [TicketController::class, 'ticketBodyUpdateProcess'])->name('ticketBodyUpdate');
+
+		Route::post('/ticketFileDelete', [TicketController::class, 'ticketFileDelete'])->name('ticketFileDelete');		
 
 	});
 	

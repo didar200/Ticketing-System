@@ -44,6 +44,9 @@
     <div class="form-group col-6">
       <label for="pop"><b>POP: </b>{{ $customer->pop->pop_name }}</label>
     </div>
+    <div class="form-group col-6">
+      <label for="user"><b>Sales Person: </b>{{ $customer->user->first_name }} {{ $customer->user->last_name }}</label>
+    </div>
   </div>
 
 </form>

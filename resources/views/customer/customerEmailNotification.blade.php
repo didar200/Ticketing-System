@@ -46,7 +46,7 @@
                       <div class="fallback form-group col-md-6 col-sm-12">
                         <label for="attachment">Attachment:</label>
                         <input name="attachment" type="file" class="form-control" id="attachment" />
-                        (<b>jpg, png, gif, txt and pdf</b> files are allowed) Max: 5MB
+                        (<b>jpg,png,gif,txt,pdf,docx,xlsx</b> files are allowed) Max: 5MB
 
                         @error('attachment')
                           <div class="text-danger">* {{ $message }}</div>
