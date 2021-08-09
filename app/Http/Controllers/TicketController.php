@@ -197,11 +197,10 @@ class TicketController extends Controller
             }
         }
 
-        $notes = Note::with('user')->where('ticket_id', $id)->orderBy('created_at', 'desc')->get();
         $histories = History::where('ticket_id', $id)->orderBy('created_at', 'desc')->get();
         $groups = Group::with('users')->where('status', 1)->select('id','group_name')->orderBy('group_name')->get();
         
-        return view('ticket.detailTicket', compact('ticket','groups','notes','status','histories','member'));
+        return view('ticket.detailTicket', compact('ticket','groups','status','histories','member'));
     }
 
     public function getUserByGroupID(Request $request)
@@ -422,6 +421,36 @@ class TicketController extends Controller
     public function ticketFileDelete(Request $request)
     {
         dd($request->attachment);
+    }
+
+
+    public function getNotesByTicket(Request $request)
+    {
+        $notes = Note::with('user')->where('ticket_id', $request->ticket_id)->orderBy('created_at', 'DESC')->paginate(4);
+
+        $data = '';
+
+        foreach ($notes as $note) 
+        {
+           $data .= '<tr style="border-style:solid;border-width: 0px 0px 5px 0px; border-color: #E8F8F5;border-radius: 2px;"> <td class="row-link">'. $note->notes .'<br>';
+           if($note->attachment != null)
+           {
+                $data .= '<b>Attachment: </b>';
+                foreach(json_decode($note->attachment, true) as $attachment)
+                {
+                    $data .= '<a href="/assets/attachment/' .$attachment. '" target="_blank">'.$attachment.' </a>,&nbsp';
+                }
+           }
+
+
+                    
+            $data .= '<br><b>Noted By: </b>'. $note->user->first_name .' '.$note->user->last_name .' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Date: ' . date_format($note->created_at, 'd M Y, h:i A') .'</b> ( '. $note->created_at->diffForHumans() .' )';
+        
+
+           $data .= '</td></tr>';
+        }
+
+        return $data;
     }
 
 

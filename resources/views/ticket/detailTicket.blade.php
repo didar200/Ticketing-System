@@ -37,7 +37,7 @@
             <div class="row">
               <div class="col-12">
                 <label>
-                  <b>TT #: </b>{{ $ticket->id}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <b>TT #: </b>{{ $ticket->id }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <b>Client Name: </b>{{ $ticket->customer->customer_id}} ({{ $ticket->customer->name }}). &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <b>Created By:</b> {{ $ticket->created_user }}. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <b>Created Date:</b> {{ date_format($ticket->created_at, 'd M Y, h:i A') }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -283,42 +283,22 @@
             </div>
 
             <div class="row">
-              <div class="form-group col-md-6 col-sm-12" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 2px;">
+              <div class="form-group col-md-6 col-sm-12" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 2px; height: 600px; overflow-y: scroll;">
                 <div>
                   <b>Notes: </b>
                 </div>
                 <hr>
                 
-                <table class="table table-bordered table-sm table-light">
+                <table class="table table-bordered table-sm table-light" id="show-more-notes">
 
-                  @foreach($notes as $note)
-                    <tr style="border-style:solid;border-width: 0px 0px 5px 0px; border-color: #E8F8F5;border-radius: 2px;">
-                      <td class="row-link">
-                        {!! $note->notes !!} <br>
-
-
-                        @if($note->attachment != null)
-                          Attachment:
-                          @foreach(json_decode($note->attachment, true) as $attachment)
-                           <a href="/assets/attachment/{{ $attachment }}" target="_blank">{{ $attachment }}</a>,&nbsp;
-                          @endforeach
-                        @endif
-
-                        <br>  
-                    
-                        <b>Noted By: </b>{{ $note->user->first_name }} {{ $note->user->last_name }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Date:
-                        {{ date_format($note->created_at, 'd M Y, h:i A') }}
-                        
-                        </b>({{ $note->created_at->diffForHumans() }})
-
-                      </td> 
-                    </tr>
-                  @endforeach
+                  
                 </table>  
+                <div id="no-more-notes"></div>
+                <button id="more-notes" onclick="getNotes({{ $ticket->id }})" class="btn btn-outline-warning btn-sm" style="margin-left: 80%; margin-bottom: 10px;">More Notes</button>
 
               </div>
 
-              <div class="form-group col-md-6 col-sm-12" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 2px;">
+              <div class="form-group col-md-6 col-sm-12" style="border-style:solid;border-width: 1px 1px 1px 1px;border-radius: 2px; height: 600px; overflow-y: scroll;">
                 <div>
                   <b>History: </b>
                 </div>
@@ -429,6 +409,41 @@
       $('#file_delete').toggle();
     });
   });
+</script>
+
+<script>
+  var page = 1;
+  function getNotes(ticket_id)
+  {
+
+    $.ajax({
+      type: "GET",
+      url: "/getNotesByTicket?ticket_id=" + ticket_id + "& page=" + page,
+
+      success: function(data)
+      {
+        page++;
+
+        if(data.length == 0)
+        {
+          $('#no-more-notes').text("");
+          $('#more-notes').hide();
+          $('#no-more-notes').text("No more notes!");
+        }
+
+        $('#show-more-notes').append(data);
+      },
+
+      error: function(error)
+      {
+        console.log(error);
+      },
+
+    });
+  }
+
+  getNotes({{ $ticket->id }});
+
 </script>
 
 @endpush

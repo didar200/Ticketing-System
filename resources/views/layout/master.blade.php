@@ -223,7 +223,7 @@
   <script src="{{ asset('assets/js/page/ion-icons.js') }}"></script>
   <script src="{{ asset('assets/bundles/select2/dist/js/select2.full.min.js') }}"></script>
 
-  <script type="text/javascript">
+  <!-- <script type="text/javascript">
 
       document.addEventListener('contextmenu', event => event.preventDefault());
  
@@ -250,7 +250,7 @@
           }
       }
    
-  </script>
+  </script> -->
 
 
 
