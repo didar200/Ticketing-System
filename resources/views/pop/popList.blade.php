@@ -29,7 +29,7 @@
 
               @if(auth()->user()->role == 1)
                 <div style="margin-left: auto;">
-                  <a class="btn btn-primary" href="{{ route('pop.create') }}">Add POP</a>
+                  <a class="btn btn-primary btn-sm" href="{{ route('pop.create') }}">Add POP</a>
                 </div>
               @endif
               

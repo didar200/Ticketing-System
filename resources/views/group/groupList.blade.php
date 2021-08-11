@@ -28,7 +28,7 @@
               <h4>Group List</h4>
 
               <div style="margin-left: auto;">
-                <a class="btn btn-primary" href="{{ route('group.create') }}">Add Group</a>
+                <a class="btn btn-primary btn-sm" href="{{ route('group.create') }}">Add Group</a>
               </div>
               
             </div>

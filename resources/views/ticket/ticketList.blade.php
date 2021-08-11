@@ -57,7 +57,7 @@
                 
                 <div style="margin-left: auto;">
                   <li class="nav-item">
-                    <a class="btn btn-primary" href="{{ route('ticket.create') }}">Create New</a>
+                    <a class="btn btn-primary btn-sm" href="{{ route('ticket.create') }}">Create New</a>
                   </li>
                 </div>
                 

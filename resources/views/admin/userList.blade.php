@@ -34,7 +34,7 @@
                 </select>
               </div>
               <div style="margin-left: auto;">
-                <a class="btn btn-primary" href="{{ route('user.register') }}">Add User</a>
+                <a class="btn btn-primary btn-sm" href="{{ route('user.register') }}">Add User</a>
               </div>
             </div>
             <div class="card-body">

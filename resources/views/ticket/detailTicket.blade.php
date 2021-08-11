@@ -52,7 +52,7 @@
 
                 @if(auth()->user()->role == 1)
                   <span style="margin-left: 87%;">
-                    <button id="locklock" class="btn btn-outline-primary">
+                    <button id="locklock" class="btn btn-outline-primary btn-sm">
                       <i data-feather="unlock"></i>
                     </button>
                   </span>
@@ -98,16 +98,16 @@
                             @foreach(json_decode($ticket->attachment, true) as $attachment)
                             
                               <a href="/assets/attachment/{{ $attachment }}" target="_blank">{{ $attachment }}</a>&nbsp;
-                              <!-- @if(auth()->user()->role == 1)
-                                <a href="#" data-toggle="modal" data-target="#file-delete" id="conform-modal"><i class="ion-close-round lock-unlock" style="color: red; border: 1px solid red"></i></a>,&nbsp;
-                              @endif -->
+                              @if(auth()->user()->role == 1)
+                                <a href="#" data-toggle="modal" data-target="#file-delete" id="confirm-delete"><i class="ion-close-round lock-unlock" style="color: red; border: 1px solid red"></i></a>,&nbsp;
+                              @endif
                             
                             @endforeach
                           @endif
                         </div>
                         <br>
                         <div class="form-group lock-unlock"> 
-                          <button type="submit" class="btn btn-primary btn-lg btn-block">
+                          <button type="submit" class="btn btn-primary btn-sm btn-block">
                             Save
                           </button>
                         </div>
@@ -151,7 +151,7 @@
                           @endif                       
                           
                           <div class="form-group"> 
-                            <button type="submit" class="btn btn-primary btn-lg btn-block">
+                            <button type="submit" class="btn btn-primary btn-sm btn-block">
                               Save
                             </button>
                           </div>
@@ -265,11 +265,11 @@
                         <div class="row">
                           <div class="form-group col mt-3">
                             @if($member == 1)
-                              <button type="submit" class="btn btn-primary btn-lg btn-block">
+                              <button type="submit" class="btn btn-primary btn-sm btn-block">
                                 Save
                               </button>
                             @else
-                              <button type="submit" class="btn btn-primary btn-lg btn-block" disabled>
+                              <button type="submit" class="btn btn-primary btn-sm btn-block" disabled>
                                 Save
                               </button>
                             @endif
@@ -304,15 +304,12 @@
                 </div>
                 <hr>
                 
-                <table class="table table-bordered table-sm table-light">
-                @foreach($histories as $history)
-                  <tr style="border-style:solid;border-width: 0px 0px 5px 0px; border-color: #E8F8F5;border-radius: 2px;">
-                    <td class="row-link">
-                      {{ $history->history}} at {{ date_format($history->created_at, 'd M Y, h:i A') }}
-                    </td>
-                  </tr>
-                @endforeach
-                </table> 
+                <table class="table table-bordered table-sm table-light" id="show-more-history">
+               
+                </table>
+
+                <div id="no-more-history"></div>
+                <button id="more-history" onclick="getHistory({{ $ticket->id }})" class="btn btn-outline-warning btn-sm" style="margin-left: 80%; margin-bottom: 10px;">More History</button> 
 
               </div>
 
@@ -413,6 +410,7 @@
 
 <script>
   var page = 1;
+
   function getNotes(ticket_id)
   {
 
@@ -424,6 +422,8 @@
       {
         page++;
 
+        $('#show-more-notes').append(data);
+
         if(data.length == 0)
         {
           $('#no-more-notes').text("");
@@ -431,7 +431,6 @@
           $('#no-more-notes').text("No more notes!");
         }
 
-        $('#show-more-notes').append(data);
       },
 
       error: function(error)
@@ -443,6 +442,41 @@
   }
 
   getNotes({{ $ticket->id }});
+  
+
+  var history_page = 1;
+
+  function getHistory(ticket_id)
+  {
+
+     $.ajax({
+       type: "GET",
+       url: "/getHistoryByTicket?ticket_id=" + ticket_id + "& page=" + history_page,
+
+       success: function(data)
+       {
+         history_page++;
+
+         $('#show-more-history').append(data);
+
+         if(data.length == 0)
+         {
+           $('#no-more-history').text("");
+           $('#more-history').hide();
+           $('#no-more-history').text("No more histories!");
+         }
+
+       },
+
+       error: function(error)
+       {
+         console.log(error);
+       },
+
+     });
+  }
+
+  getHistory({{ $ticket->id }});
 
 </script>
 

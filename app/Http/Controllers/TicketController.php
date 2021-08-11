@@ -197,10 +197,9 @@ class TicketController extends Controller
             }
         }
 
-        $histories = History::where('ticket_id', $id)->orderBy('created_at', 'desc')->get();
         $groups = Group::with('users')->where('status', 1)->select('id','group_name')->orderBy('group_name')->get();
         
-        return view('ticket.detailTicket', compact('ticket','groups','status','histories','member'));
+        return view('ticket.detailTicket', compact('ticket','groups','status','member'));
     }
 
     public function getUserByGroupID(Request $request)
@@ -420,13 +419,13 @@ class TicketController extends Controller
 
     public function ticketFileDelete(Request $request)
     {
-        dd($request->attachment);
+        //dd($request->attachment);
     }
 
 
     public function getNotesByTicket(Request $request)
     {
-        $notes = Note::with('user')->where('ticket_id', $request->ticket_id)->orderBy('created_at', 'DESC')->paginate(4);
+        $notes = Note::with('user')->where('ticket_id', $request->ticket_id)->orderBy('id', 'DESC')->paginate(4);
 
         $data = '';
 
@@ -441,13 +440,25 @@ class TicketController extends Controller
                     $data .= '<a href="/assets/attachment/' .$attachment. '" target="_blank">'.$attachment.' </a>,&nbsp';
                 }
            }
-
-
-                    
-            $data .= '<br><b>Noted By: </b>'. $note->user->first_name .' '.$note->user->last_name .' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Date: ' . date_format($note->created_at, 'd M Y, h:i A') .'</b> ( '. $note->created_at->diffForHumans() .' )';
+         
+           $data .= '<br><b>Noted By: </b>'. $note->user->first_name .' '.$note->user->last_name .' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b>Date: ' . date_format($note->created_at, 'd M Y, h:i A') .'</b> ( '. $note->created_at->diffForHumans() .' )';
         
 
            $data .= '</td></tr>';
+        }
+
+        return $data;
+    }
+
+    public function getHistoryByTicket(Request $request)
+    {
+        $histories = History::where('ticket_id', $request->ticket_id)->orderBy('id', 'desc')->paginate(10);
+
+        $data = '';
+
+        foreach($histories as $history)
+        {
+            $data .= '<tr style="border-style:solid;border-width: 0px 0px 5px 0px; border-color: #E8F8F5;border-radius: 2px;"> <td class="row-link">' .$history->history .' at '.date_format($history->created_at, "d M Y, h:i A"). '</td></tr>';
         }
 
         return $data;

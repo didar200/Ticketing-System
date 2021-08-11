@@ -42,7 +42,7 @@
 
               @if(auth()->user()->role == 1)
                 <div style="margin-left: auto;">
-                  <a class="btn btn-primary" href="{{ route('customer.create') }}">Add Client</a>
+                  <a class="btn btn-primary btn-sm" href="{{ route('customer.create') }}">Add Client</a>
                 </div>
               @endif
             </div>

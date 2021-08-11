@@ -113,6 +113,7 @@ Route::middleware('AuthCheck')->group(function(){
 	Route::post('/addNoteProcess', [TicketController::class, 'addNoteProcess'])->name('addNoteProcess');
 
 	Route::get('/getNotesByTicket', [TicketController::class, 'getNotesByTicket'])->name('getNotesByTicket');
+	Route::get('/getHistoryByTicket', [TicketController::class, 'getHistoryByTicket'])->name('getHistoryByTicket');
 
 	Route::post('/searchTicketProcess', [TicketController::class, 'searchTicketProcess'])->name('searchTicketProcess');
 	Route::get('/searchTicketAjax', [TicketController::class, 'searchTicketAjax'])->name('searchTicketAjax');
